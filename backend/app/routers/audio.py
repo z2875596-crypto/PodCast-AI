@@ -3,7 +3,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
-from services.downloader import TEMP_DIR, DownloadServiceError, download_podcast_audio
+from app.services.downloader import TEMP_DIR, DownloadServiceError, download_podcast_audio
 
 router = APIRouter(tags=["audio"])
 
