@@ -1,0 +1,48 @@
+.app {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.5rem;
+  font-family: var(--heading);
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  color: var(--text-h);
+}
+
+.tagline {
+  margin: 0;
+  color: var(--text);
+}
+
+.panel {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 92%, var(--border));
+  box-shadow: var(--shadow);
+}
+
+.panel p {
+  margin: 0 0 0.75rem;
+}
+
+.panel p:last-child {
+  margin-bottom: 0;
+}
+
+.hint {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.panel code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  padding: 0.12em 0.35em;
+  border-radius: 6px;
+  background: var(--code-bg);
+}
