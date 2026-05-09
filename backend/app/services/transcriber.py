@@ -68,7 +68,7 @@ def transcribe_audio(audio_path: Path, gemini_api_key: str) -> str:
 
         # 2. 调用 generateContent 转录
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             contents=[_TRANSCRIBE_PROMPT, uploaded],
         )
 
@@ -77,6 +77,8 @@ def transcribe_audio(audio_path: Path, gemini_api_key: str) -> str:
     except TranscribeServiceError:
         raise
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise TranscribeServiceError(2003, "转录失败") from e
 
     finally:
