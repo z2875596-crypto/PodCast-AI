@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import audio, feishu, summarize, transcribe, enhance
+from app.routers import audio, feishu, summarize, transcribe, enhance, word, segments
 
 app = FastAPI(
     title="PodCast AI API",
@@ -23,6 +23,8 @@ app.include_router(transcribe.router, prefix="/api/v1")
 app.include_router(summarize.router, prefix="/api/v1")
 app.include_router(feishu.router, prefix="/api/v1")
 app.include_router(enhance.router, prefix="/api/v1")
+app.include_router(word.router, prefix="/api/v1")
+app.include_router(segments.router, prefix="/api/v1")
 
 
 @app.get("/health")

@@ -529,3 +529,162 @@ mark {
   background: var(--orange-s); color: var(--orange-d);
   border-radius: 999px; padding: 0.1rem 0.5rem;
 }
+
+/* ════════════════════════════════════════
+   查词搜索窗口
+════════════════════════════════════════ */
+.topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+
+.btn-search-trigger {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.4rem 0.875rem;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 8px; color: var(--muted);
+  font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-search-trigger:hover { border-color: var(--orange); color: var(--orange); }
+.btn-search-trigger kbd {
+  background: var(--border); border-radius: 4px;
+  padding: 0.1rem 0.35rem; font-size: 0.7rem; color: var(--muted);
+}
+.btn-search-trigger.mt { margin-top: 0.5rem; }
+
+/* 搜索遮罩 */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,0.35);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 8vh;
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+.search-modal {
+  width: 100%; max-width: 600px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+  max-height: 80vh; display: flex; flex-direction: column;
+}
+@keyframes slideDown { from{transform:translateY(-12px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+.search-bar {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.search-icon { font-size: 1rem; flex-shrink: 0; }
+.search-input {
+  flex: 1; border: none; outline: none;
+  font-family: var(--font-body); font-size: 1rem; color: var(--text);
+  background: transparent;
+}
+.search-input::placeholder { color: var(--muted); }
+.search-go {
+  padding: 0.35rem 0.75rem;
+  background: var(--orange); border: none; border-radius: 6px;
+  color: #fff; font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap;
+}
+.search-close {
+  background: none; border: none; color: var(--muted);
+  font-size: 1.2rem; cursor: pointer; padding: 0 0.25rem;
+  line-height: 1; flex-shrink: 0;
+}
+.search-body { flex: 1; overflow-y: auto; padding: 1rem; }
+
+.search-loading { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem; color: var(--muted); font-size: 0.85rem; }
+
+.search-hint { color: var(--muted); }
+.search-hint p { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.6rem; }
+.search-hint ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.search-hint li { font-size: 0.82rem; padding-left: 1rem; position: relative; }
+.search-hint li::before { content: '·'; position: absolute; left: 0; color: var(--orange); }
+
+/* 查词结果 */
+.word-result { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.word-header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+}
+.word-main { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.word-title { font-family: var(--font-head); font-size: 1.6rem; font-weight: 800; color: var(--text); }
+.word-phonetic { font-size: 0.9rem; color: var(--muted); font-family: var(--font-body); }
+.word-level-badge {
+  font-size: 0.72rem; font-weight: 700; border-radius: 999px; padding: 0.15rem 0.6rem;
+}
+
+.btn-add-vocab {
+  padding: 0.45rem 0.875rem; white-space: nowrap; flex-shrink: 0;
+  background: var(--orange-s); border: 1.5px solid rgba(249,115,22,0.3);
+  border-radius: 8px; color: var(--orange);
+  font-family: var(--font-body); font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-add-vocab:hover { background: var(--orange); color: #fff; }
+.btn-add-vocab.added {
+  background: #f0fdf4; border-color: #86efac; color: var(--success); cursor: default;
+}
+
+.word-section h4 {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+}
+
+.word-def {
+  display: flex; gap: 0.75rem; margin-bottom: 0.6rem; align-items: flex-start;
+}
+.word-pos {
+  font-size: 0.72rem; font-weight: 700; color: var(--orange);
+  background: var(--orange-s); border-radius: 4px; padding: 0.15rem 0.4rem;
+  white-space: nowrap; flex-shrink: 0; margin-top: 0.15rem;
+}
+.word-meaning-zh { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
+.word-meaning-en { font-size: 0.8rem; color: var(--muted); font-style: italic; }
+
+.phrase-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.phrase-item {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding: 0.4rem 0.6rem; background: var(--bg); border-radius: 6px;
+}
+.phrase-en { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.phrase-zh { font-size: 0.8rem; color: var(--muted); }
+
+.example-item {
+  padding: 0.6rem 0.75rem;
+  background: var(--bg); border-radius: 8px;
+  border-left: 3px solid var(--orange);
+  margin-bottom: 0.5rem;
+}
+.example-en { font-size: 0.875rem; color: var(--text); margin-bottom: 0.25rem; font-style: italic; }
+.example-zh { font-size: 0.8rem; color: var(--muted); }
+
+/* ── 生词本卡片 ── */
+.vocab-item {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.vocab-item-top {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.vocab-word { font-size: 0.95rem; font-weight: 800; color: var(--text); margin-right: 0.5rem; }
+.vocab-phonetic { font-size: 0.78rem; color: var(--muted); }
+.vocab-item-actions { display: flex; align-items: center; gap: 0.5rem; }
+.vocab-level { font-size: 0.72rem; font-weight: 700; }
+.vocab-meanings { display: flex; flex-direction: column; gap: 0.2rem; }
+.vocab-meaning { font-size: 0.78rem; color: var(--muted); }
+.vocab-meaning em { font-style: normal; color: var(--orange); margin-right: 0.3rem; font-size: 0.7rem; font-weight: 700; }
+.vocab-lookup-btn {
+  background: none; border: none; color: var(--orange);
+  font-size: 0.75rem; font-weight: 700; cursor: pointer; padding: 0; text-align: left;
+}
+.vocab-lookup-btn:hover { text-decoration: underline; }
+
+/* 转录双击提示 */
+.lang-tip { font-size: 0.72rem; color: var(--muted); margin-left: 0.5rem; }
+.header-right { display: flex; align-items: center; gap: 0.5rem; }
